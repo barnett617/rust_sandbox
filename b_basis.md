@@ -1,110 +1,4 @@
-## Simple File Demo
-
-### 1.Install Rust
-
-```sh
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-### 2.Check Version
-
-```
-rustup --version
-```
-
-> Recommand: Using Iterm to do the following
-
-### 3.Create Hello World
-
-```
-touch hello.rs
-```
-
-```rs
-fn main() {
-    println!("Hello World!");
-}
-```
-
-### 4.Compile
-
-```
-rustc hello.rs
-```
-
-### 5.Run the executable file
-
-```
-./hello
-```
-
-## Rust Project by Cargo
-
-### 1.Check cargo version
-
-```
-cargo --version
-cargo update
-```
-
-### 2.Init project
-
-If there is an existing empty project folder
-
-```
-cargo init
-```
-
-Or using cargo to create a project folder with target name
-
-```
-cargo new project_name
-```
-
-### 3.Run the project
-
-```
-cargo run
-```
-
-### 4.Build for debugging
-
-```
-cargo build
-```
-
-### 5.Build for release
-
-```
-cargo build --release
-```
-
-### 6.Module Import
-
-```
-touch src/print.rs
-```
-
-```rs
-pub fn run() {
-    println!("Hello from print file");
-}
-```
-
-Then rewrite main.rs as follows:
-
-```rs
-mod print
-fn main() {
-    print::run();
-}
-```
-
-```
-cargo run
-```
-
-### 7.Printing
+### 1.Printing
 
 #### 1)Simple Print
 
@@ -184,7 +78,7 @@ fn main() {
 }
 ```
 
-### 8.Variables
+### 2.Variable
 
 #### 1)Basic variable
 
@@ -218,7 +112,7 @@ fn main() {
 }
 ```
 
-### 9. Types
+### 3.Type
 
 ```rs
 fn main() {
@@ -240,7 +134,7 @@ fn main() {
 }
 ```
 
-### 10. Strings
+### 4.String
 
 ```rs
 fn main() {
@@ -317,4 +211,100 @@ looping...
 word: World!
 string generated from specific capacity: 
 specific capacity string after push chars: ab
+```
+
+### 5.Tuple
+
+```rs
+fn main() {
+    let person: (&str, &str, i8) = ("Wilson", "coding", 28);
+    println!("{} is {} and he is {}", person.0, person.1, person.2);
+}
+```
+
+### 6.Array
+
+```rs
+use std::mem;
+
+fn main() {
+    let mut numbers: [i32; 5] = [1,2,3,4,5];
+    println!("{:?}", numbers);
+
+    // Re-assige element
+    numbers[2] = 28;
+    println!("After re-arrange: {:?}", numbers);
+
+    // Get indexed value
+    println!("The first one is: {}", numbers[0]);
+
+    // Get length
+    println!("Length is: {}", numbers.len());
+
+    // Get bytes(Array are stack allocated)
+    println!("Array occupies {} bytes", std::mem::size_of_val(&numbers));
+
+    // If used library, then we can use it directly
+    println!("Memory size is: {} bytes", mem::size_of_val(&numbers));
+
+    // Get slice
+    let slice: &[i32] = &numbers;
+    println!("The slice is: {:?}", slice);
+    
+    let ranged_slice: &[i32] = &numbers[0..2];
+    println!("Ranged slice is: {:?}", ranged_slice);
+}
+```
+
+### 7.Vector
+
+```rs
+use std::mem;
+
+fn main() {
+    let mut numbers: Vec<i32> = vec![1,2,3,4];
+
+    // Re-assign
+    numbers[2] = 28;
+
+    println!("After reassigning: {:?}", numbers);
+
+    // Push value
+    numbers.push(5);
+    println!("After pushing new element: {:?}", numbers);
+
+    // Pop last value
+    let last = numbers.pop();
+    println!("After popping: {:?}", numbers);
+    println!("The popped value is: {:?}", last);
+
+    // Get indexed element
+    let first = numbers[0];
+    println!("The first element of vector is: {}", first);
+
+    // Get vector length
+    let len = numbers.len();
+    println!("The length of vector is: {}", len);
+
+    // Get allocated bytes(stack allocated)
+    let bytes = mem::size_of_val(&numbers);
+    println!("The vector occupies {} bytes", bytes);
+
+    // Get slice
+    let slice: &[i32] = &numbers;
+    println!("The slice is: {:?}", slice);
+
+    // Loop through vector values
+    for x in numbers.iter() {
+        println!("Number: {}", x);
+    }
+
+    // Loop and mutate values
+    for x in numbers.iter_mut() {
+        // *x = x * 2;
+        *x *= 2;
+    }
+
+    println!("After mutating each value: {:?}", numbers);
+}
 ```
