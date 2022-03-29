@@ -4,7 +4,9 @@
 // mod d_string;
 // mod e_tuple;
 // mod f_array;
-mod g_vector;
+// mod g_vector;
+// mod h_conditional;
+mod i_loop;
 
 fn main() {
     // a_print::run();
@@ -13,5 +15,7 @@ fn main() {
     // d_string::run();
     // e_tuple::run();
     // f_array::run();
-    g_vector::run();
+    // g_vector::run();
+    // h_conditional::run();
+    i_loop::run();
 }
