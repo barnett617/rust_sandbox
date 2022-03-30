@@ -9,7 +9,9 @@
 // mod i_loop;
 // mod j_function;
 // mod k_reference;
-mod l_struct;
+// mod l_struct;
+// mod m_enum;
+mod n_cli;
 
 fn main() {
     // a_print::run();
@@ -23,5 +25,7 @@ fn main() {
     // i_loop::run();
     // j_function::run();
     // k_reference::run();
-    l_struct::run();
+    // l_struct::run();
+    // m_enum::run();
+    n_cli::run();
 }

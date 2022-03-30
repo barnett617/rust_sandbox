@@ -484,3 +484,72 @@ fn main() {
     println!("Name tuple is: {:?}", name_tuple);
 }
 ```
+
+### 13.Enum
+
+```rs
+enum Movement {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+fn move_sth(m: Movement) {
+    let direction;
+    match m {
+        Movement::Up => {
+            direction = "Up";
+        },
+        Movement::Down => {
+            direction = "Down";
+        },
+        Movement::Left => {
+            direction = "Left";
+        },
+        Movement::Right => {
+            direction = "Right";
+        }
+    }
+    println!("Moving to {}", direction);
+}
+
+fn main() {
+    let move1 = Movement::Left;
+    let move2 = Movement::Right;
+    let move3 = Movement::Up;
+    let move4 = Movement::Down;
+
+    move_sth(move1);
+    move_sth(move2);
+    move_sth(move3);
+    move_sth(move4);
+}
+```
+
+### 14.Cli
+
+```rs
+use std::env;
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+    if args.len() == 1 {
+        println!("Finish");
+    } else {
+        let command = args[1].clone();
+        let name = "Wilson";
+        let status = "100%";
+
+        let output;
+        if command == "greet" {
+            output = "Hi";
+        } else if command == "status" {
+            output = status;
+        } else {
+            output = "Invalid command";
+        }
+        println!("{} {}", output, name);
+    }
+}
+```
