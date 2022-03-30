@@ -6,7 +6,10 @@
 // mod f_array;
 // mod g_vector;
 // mod h_conditional;
-mod i_loop;
+// mod i_loop;
+// mod j_function;
+// mod k_reference;
+mod l_struct;
 
 fn main() {
     // a_print::run();
@@ -17,5 +20,8 @@ fn main() {
     // f_array::run();
     // g_vector::run();
     // h_conditional::run();
-    i_loop::run();
+    // i_loop::run();
+    // j_function::run();
+    // k_reference::run();
+    l_struct::run();
 }

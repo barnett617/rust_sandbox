@@ -378,3 +378,109 @@ for x in 0..100 {
     }
 }
 ```
+
+### 10.Function
+
+```rs
+fn main() {
+    greeting("Hi", "Wilson");
+
+    let sum = add(1, 2);
+    println!("Sum is: {}", sum);
+
+    // Closure: access outside variables
+    let n3: i32 = 5;
+    let get_sum = |n1: i32, n2: i32| n1 + n2 + n3;
+    println!("Closure sum is: {}", get_sum(3, 4));
+}
+
+fn greeting(greet: &str, name: &str) {
+    println!("{} {}", greet, name);
+}
+
+fn add(n1: i32, n2: i32) -> i32 {
+    n1 + n2
+}
+```
+
+### 11.Reference
+
+```rs
+fn main() {
+    let arr1 = [1, 2, 3];
+    let arr2 = arr1;
+    println!("{:?}", arr1, arr2);
+
+    let vec1 = vec![1, 2, 3];
+    let vec2 = &vec1;
+    println!("{:?}", &vec1, vec2);
+}
+```
+
+### 12.Struct
+
+```rs
+// Traditional Struct
+struct Color {
+    red: u8,
+    green: u8,
+    blue: u8
+}
+
+// Tuple Struct
+struct TupleColor(u8, u8, u8);
+
+struct Person {
+    first_name: String,
+    last_name: String
+}
+
+impl Person {
+    fn new (first: &str, last: &str) -> Person {
+        Person {
+            first_name: first.to_string(),
+            last_name: last.to_string()
+        }
+    }
+
+    fn full_name(&self) -> String {
+        format!("{} {}", self.first_name, self.last_name)
+    }
+
+    fn set_last_name(&mut self, last: &str) {
+        self.last_name = last.to_string();
+    }
+
+    fn to_tuple(self) -> (String, String) {
+        (self.first_name, self.last_name)
+    }
+}
+
+fn main() {
+    let mut c = Color {
+        red: 255,
+        green: 0,
+        blue: 0
+    };
+    println!("Color: {} {} {}", c.red, c.green, c.blue);
+    c.green = 255;
+    println!("Color after mutating: {} {} {}", c.red, c.green, c.blue);
+
+    let mut tc = TupleColor(255, 0, 0);
+    println!("Tuple Color: {} {} {}", tc.0, tc.1, tc.2);
+    tc.2 = 255;
+    println!("Tuple Color after mutating: {} {} {}", tc.0, tc.1, tc.2);
+
+    let mut p = Person::new("Wilson", "Wang");
+    println!("Person {} {}", p.first_name, p.last_name);
+
+    let full_name = p.full_name();
+    println!("Person full name: {}", full_name);
+
+    p.set_last_name("Lee");
+    println!("Person full name after setting last name: {}", p.full_name());
+
+    let name_tuple = p.to_tuple();
+    println!("Name tuple is: {:?}", name_tuple);
+}
+```
